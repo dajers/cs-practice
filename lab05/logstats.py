@@ -1,12 +1,11 @@
 LEVELS = ['DEBUG', 'INFO', 'WARNING', 'ERROR']
 
 
-
 def parse_event(line: str) -> dict:
     data = line.split(maxsplit=2)
     if len(data) < 3 or data[1] not in LEVELS:
         raise ValueError
-    return {"time": data[0], "level": data[1], "message": data[2].rstrip("\n")}
+    return {"time": data[0], "level": data[1], "message": data[2].rstrip("\r\n")}
 
 
 def count_levels(lines: list[str]) -> dict:
@@ -44,10 +43,9 @@ def top_errors(lines, n) -> list[list]:
 
 
 def format_report(counts: dict, errors: list[list]) -> str:
-    levels = ["BROKEN", "DEBUG", "ERROR", "INFO", "WARNING"]
     lines = ["Отчёт по журналу", ""]
-    for level in levels:
-        lines.append(f"{level}: {counts.get(level, 0)}")
+    for level in sorted(counts):
+        lines.append(f"{level}: {counts[level]}")
     lines.append("")
     lines.append("Частые ошибки:")
     for message, count in errors:
