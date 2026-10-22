@@ -8,7 +8,7 @@ def count_by_extension(paths: list[str]) -> dict[str, int]:
         data = path.split('.')
         if len(data) == 1:
             data.append('')
-        ext = data[1].lower()
+        ext = data[-1].lower()
         res[ext] = res.get(ext, 0)+1
     return res
 
