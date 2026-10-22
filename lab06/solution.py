@@ -24,4 +24,5 @@ def human_size(n_bytes: int) -> str:
     while n_bytes//1024 != 0:
         n_bytes = n_bytes/1024
         res += 1
+    n_bytes = float(n_bytes)
     return f'{n_bytes:.1f} {UNITS[res]}'
