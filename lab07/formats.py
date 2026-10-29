@@ -3,15 +3,13 @@ import json
 
 def csv_to_records(text: str) -> list[dict]:
     lines = text.split('\n')
-    for line in lines:
-        line = line.strip()
     headers = lines[0].split(',')
     lines = lines[1:]
     res = []
     for line in lines:
         line = line.split(',')
         if len(line) == 2:
-            res.append({headers[0]: line[0], headers[1]: line[1]})    
+            res.append({headers[0].strip(): line[0].strip(), headers[1].strip(): line[1].strip()})    
     return res
 
 
