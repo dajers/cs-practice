@@ -3,6 +3,8 @@ import json
 
 def csv_to_records(text: str) -> list[dict]:
     lines = text.split('\n')
+    for line in lines:
+        line = line.strip()
     headers = lines[0].split(',')
     lines = lines[1:]
     res = []
