@@ -33,8 +33,8 @@ def parsing(value: str):
 def parse_settings(lines: list[str]) -> dict:
     result = {}
     current_list_key = None
-    for raw in lines:
-        line = raw.split("#", 1)[0].rstrip()
+    for rawLine in lines:
+        line = rawLine.split("#", 1)[0].rstrip()
         if not line.strip():
             continue
         stripped = line.strip()
