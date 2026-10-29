@@ -20,7 +20,9 @@ def parsing(value: str):
     if lowered in ("false", "no"):
         return False
     try:
-        return int(value)
+        if ',' in value:
+            value = value.replace(',', '.')
+        return int(value) 
     except ValueError:
         pass
     try:
@@ -71,3 +73,6 @@ def merge_by_key(rows: list[dict], extra: dict, key: str = "id") -> list[dict]:
 
 def records_to_json(records: list[dict]) -> str:
     return json.dumps(records, ensure_ascii=False, indent=2, sort_keys=True)
+
+
+print(parse_settings(["rate: 3,5 # с запятой",]))
